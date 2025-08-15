@@ -1,0 +1,51 @@
+[project]
+name = "my_package"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "MilanMartin",email = "milanmartin142@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.12.8"
+black = "^25.1.0"
+isort = "^6.0.1"
+pre-commit = "^4.3.0"
+pytest = "^8.4.1"
+
+
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+extend-select = ["I"]  # Enable isort checks via Ruff
+exclude = ["dist", "build", ".venv"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101"]  # Ignore "assert" usage warnings in tests
+
+[tool.black]
+line-length = 88
+target-version = ["py313"]
+exclude = '''
+/(
+    \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 88
+known_first_party = ["my_package"]  # Change to match your package folder name
+skip = [".venv", "build", "dist"]
+
